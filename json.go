@@ -54,7 +54,7 @@ func NewJSONServer(handlers []JSONHandler) *JSONServer {
 		// Pass Object
 		body, err := ioutil.ReadAll(r.Body)
 		if err != nil {
-			logging.Instance().Errorf("Error reading body: %v, from %s", err, reflection.GetThisFuncName())
+			logging.Errorf("Error reading body: %v, from %s", err, reflection.GetThisFuncName())
 
 			http.Error(rw, "can't read body", http.StatusBadRequest)
 			return
