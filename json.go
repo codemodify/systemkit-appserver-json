@@ -10,7 +10,6 @@ import (
 
 	appserver "github.com/codemodify/systemkit-appserver"
 	httpServer "github.com/codemodify/systemkit-appserver-http"
-	reflection "github.com/codemodify/systemkit-helpers-reflection"
 	logging "github.com/codemodify/systemkit-logging"
 )
 
@@ -54,8 +53,7 @@ func NewJSONServer(handlers []JSONHandler) *JSONServer {
 		// Pass Object
 		body, err := ioutil.ReadAll(r.Body)
 		if err != nil {
-			logging.Errorf("Error reading body: %v, from %s", err, reflection.GetThisFuncName())
-
+			logging.Errorf("can't read body: %s", err.Error())
 			http.Error(rw, "can't read body", http.StatusBadRequest)
 			return
 		}
